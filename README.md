@@ -38,3 +38,7 @@ FirstLetters("大虾㚘", " ") // dxb dxh dxf dhb dhh dhf txb txh txf thb thh th
 多音字只保留最常用的三个读音, 实际上超过三个读音的多音字很少, 只有 10 几个, 且都是生僻音.
 
 只包括 unicode 编码在 0xffff 之前的汉字, 基本都是生僻字, 不影响正常使用.
+
+## Thanks
+
+拼音数据来自于: [https://github.com/mozillazg/pinyin-data](https://github.com/mozillazg/pinyin-data)
