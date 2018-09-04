@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 normal_first_letters = {
     'ā': 'a',
     'á': 'a',
@@ -41,6 +43,8 @@ class Record:
             c = normal_first_letter(w[0])
             if c not in first_letters:
                 first_letters.append(c)
+        assert chr(
+            self.ord) == self.ch, f'{chr(self.ord)} {self.ch} {self.ord}'
         self.first_letters = first_letters
 
     def __str__(self):
@@ -48,14 +52,17 @@ class Record:
 
     def encoded_tones(self):
         bits = 0
-        for ch in list(reversed(self.first_letters))[:3]:
+        first = True
+        for ch in list(reversed(self.first_letters[:3])):
+            if not first:
+                bits <<= 5
+            first = False
             bits += ord(ch) - ord('a') + 1
-            bits << 5
         return bits
 
 
 first_letter_set = set()
-max_multi_tones = Record('123: zh # f')
+max_multi_tones = Record('U+3405: wǔ  # 㐅')
 more_than_three_tones = []
 counts = 0
 recs = []
@@ -95,6 +102,6 @@ package pinyin
 var records = []record{''')
 
 for r in recs:
-    print(f'    {{Order: {hex(r.ord)}, Tones: {r.encoded_tones()}}}, // {r.ch}')
+    print(f'    {{CodePoint: {hex(r.ord)}, Tones: {r.encoded_tones()}}}, // {r.ch}')
 
 print('}')
