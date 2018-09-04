@@ -3,6 +3,7 @@
         "Idxs",
         "gomega",
         "onsi",
-        "srvs"
+        "srvs",
+        "uint"
     ]
 }
