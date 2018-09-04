@@ -16,7 +16,7 @@ func GetRuneFirstLetters(c rune) []rune
 ## FirstLetters
 
 ```go
-func FirstLetters(s string, sep rune) string
+func FirstLetters(s string, sep string) string
 ```
 
 返回字符串的拼音首字母:
@@ -24,13 +24,13 @@ func FirstLetters(s string, sep rune) string
 忽略不可打印字符, 非汉字返回字符自身:
 
 ```go
-FirstLetters("a全\n", ' ') // aq
+FirstLetters("a全\n", " ") // aq
 ```
 
 如果包含多音字, 生成多音字的所以组合, 用`sep`字符隔开:
 
 ```go
-FirstLetters("大虾㚘", ' ') // dxb dxh dxf dhb dhh dhf txb txh txf thb thh thf
+FirstLetters("大虾㚘", " ") // dxb dxh dxf dhb dhh dhf txb txh txf thb thh thf
 ```
 
 ## 限制

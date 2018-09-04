@@ -49,7 +49,7 @@ func GetRuneFirstLetters(c rune) []rune {
 // FirstLetters returns first letters of a string,
 // If char not chinese, return char itself.
 // If char has multiple tone, returns all combinations, separate by sep argument.
-func FirstLetters(s string, sep rune) string {
+func FirstLetters(s string, sep string) string {
 	runeSet := [][]rune{}
 	for _, c := range s {
 		rs := GetRuneFirstLetters(rune(c))
@@ -104,7 +104,7 @@ func FirstLetters(s string, sep rune) string {
 
 	addAll(0)
 
-	return strings.Join(rvs, string(sep))
+	return strings.Join(rvs, sep)
 }
 
 func contains(list []string, s string) bool {
