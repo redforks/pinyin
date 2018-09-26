@@ -42,3 +42,5 @@ FirstLetters("大虾㚘", " ") // dxb dxh dxf dhb dhh dhf txb txh txf thb thh th
 ## Thanks
 
 拼音数据来自于: [https://github.com/mozillazg/pinyin-data](https://github.com/mozillazg/pinyin-data)
+
+拼音词库来自于: [https://github.com/janx/ruby-pinyin](https://github.com/janx/ruby-pinyin)
