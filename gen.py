@@ -112,8 +112,55 @@ def gen_letter():
     print('}')
 
 
+def build_tree():
+    root = []
+
+    def find_or_create(s, pinyin):
+        ns = root
+        for i, ch in enumerate(s):
+            for n in ns:
+                if n['ch'] == ch:
+                    return ns
+            else:
+                isLast = i + 1 == len(s)
+                n = {
+                    'ch': ch,
+                    'children': None if isLast else [],
+                    'pinyin': pinyin if isLast else None,
+                }
+                ns.append(n)
+            ns = n['children']
+        return n
+
+    for line in open('words.dat'):
+        pair = line.split(',')
+        if len(pair) != 2:
+            continue
+        find_or_create(pair[0], pair[1])
+
+    return {
+        'ch': '',
+        'children': root,
+    }
+
+
+def breadth_first_walk(node):
+    if node['children'] is None:
+        yield node['ch'], node['pinyin']
+    else:
+        yield node['ch'], node['children']
+        for n in node['children']:
+            yield from breadth_first_walk(n)
+
+
 def gen_words():
-    print('words')
+    tree = build_tree()
+
+    for ch, item in breadth_first_walk(tree):
+        if isinstance(item, list):
+            print(f'{ch},{len(item)}')
+        else:
+            print(f'{ch},0,{item}')
 
 
 if len(sys.argv) == 1 or (sys.argv[1] not in ['--letter', '--words']):
